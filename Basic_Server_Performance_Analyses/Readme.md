@@ -26,7 +26,7 @@ Server performance is a measurement of how well the server is performing. It is 
 4. Top 5 Processes by CPU Usage
 5. Top 5 Processes by Memory Usage
 
-## CODE:
+## CODE EXPLANATION:
 
 ```bash
 #!/bin/bash
