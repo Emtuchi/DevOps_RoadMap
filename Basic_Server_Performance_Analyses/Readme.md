@@ -34,7 +34,7 @@ Server performance is a measurement of how well the server is performing. It is 
 
 • This tells the system to use the Bash shell to execute the script.
 
-### Get CPU usage
+### Get CPU usage:
 
 ```bash
 CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}')
@@ -59,7 +59,7 @@ CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}')
 
 > We sum them to get the total CPU usage.
 
-### Get Memory usage
+### Get Memory usage:
 
 ```bash
 TOTAL_MEM=$(free -m | awk '/Mem:/ {print $2}')
@@ -138,7 +138,7 @@ MEM_PERCENT=$(awk "BEGIN {printf \"%.2f\", ($USED_MEM/$TOTAL_MEM)*100}")
 
 (html special characters like &#92; were used in this readme, look it up)
 
-### Get Disk usage
+### Get Disk usage:
 
 ```bash
 DISK_USAGE=$(df -h --total | grep 'total' | awk '{print $3}')
@@ -168,7 +168,7 @@ DISK_PERCENT=$(df -h --total | grep 'total' | awk '{print $5}')
 
 - Extracts disk usage percentage.
 
-### Get top 5 CPU-consuming processes
+### Get top 5 CPU-consuming processes:
 
 ```bash
 TOP_CPU_PROCESSES=$(ps -eo pid,comm,%cpu --sort=-%cpu | head -n 6)
@@ -192,7 +192,7 @@ TOP_CPU_PROCESSES=$(ps -eo pid,comm,%cpu --sort=-%cpu | head -n 6)
 
 - Gets the top 5 processes plus the header.
 
-### Get top 5 memory-consuming processes
+### Get top 5 memory-consuming processes:
 
 ```bash
 TOP_MEM_PROCESSES=$(ps -eo pid,comm,%mem --sort=-%mem | head -n 6)
@@ -200,7 +200,7 @@ TOP_MEM_PROCESSES=$(ps -eo pid,comm,%mem --sort=-%mem | head -n 6)
 
 - Similar to CPU processes, but instead of %cpu, we use %mem (memory usage).
 
-### Get OS Version
+### Get OS Version:
 
 ```bash
 OS_VERSION=$(cat /etc/os-release | grep -w "PRETTY_NAME" | cut -d '=' -f2 | tr -d '"')
@@ -222,7 +222,7 @@ OS_VERSION=$(cat /etc/os-release | grep -w "PRETTY_NAME" | cut -d '=' -f2 | tr -
 
 - Removes quotes.
 
-### Get system uptime
+### Get system uptime:
 
 ```bash
 UPTIME=$(uptime -p)
@@ -232,7 +232,7 @@ UPTIME=$(uptime -p)
 
 - Shows uptime in a human-readable format (e.g., "up 5 hours, 30 minutes").
 
-### Get load average
+### Get load average:
 
 ```bash
 LOAD_AVG=$(uptime | awk -F'load average:' '{print $2}')
@@ -249,7 +249,7 @@ LOAD_AVG=$(uptime | awk -F'load average:' '{print $2}')
 - The -F flag in awk sets the field separator (delimiter) for splitting input lines into columns.
 - $2 represents the second column i.e what came after "load average", $1 is what came before, since it broke the linw into 2 parts
 
-### Get logged in users
+### Get logged in users:
 
 ```bash
 LOGGED_USERS=$(who | wc -l)
@@ -263,7 +263,7 @@ LOGGED_USERS=$(who | wc -l)
 
 - Counts the number of logged-in users.
 
-### Get failed login attempts (Only for systems using auth.log)
+### Get failed login attempts (Only for systems using auth.log):
 
 ```bash
 FAILED_LOGINS=$(grep "Failed password" /var/log/auth.log 2>/dev/null | wc -l)
